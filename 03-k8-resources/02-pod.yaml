@@ -6,7 +6,9 @@ metadata:
     purpose: demo
 spec: 
   containers:
-  - name: nginx
-    image: nginx
-    ports:
-    - containerPort: 80
+  # - name: nginx
+  #   image: nginx
+  #   ports:
+  #   - containerPort: 80
+  - name: almalinux
+    image: almalinux:9
