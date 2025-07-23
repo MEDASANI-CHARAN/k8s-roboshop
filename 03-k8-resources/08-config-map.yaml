@@ -5,7 +5,7 @@ metadata:
   labels:
     purpose: Config
     env: dev
-  data:
-    COURSE: "DevOps with AWS"
-    DURATION: "120hrs"
-    TRAINER: "Charan"
+data:
+  COURSE: "DevOps with AWS"
+  DURATION: "120hrs"
+  TRAINER: "Charan"
