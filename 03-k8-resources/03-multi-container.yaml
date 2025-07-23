@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container 
+  labels:
+    project: roboshop
+    purpose: multi-container-demo
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  - name: alamalinux
+    image: alamalinux:9
