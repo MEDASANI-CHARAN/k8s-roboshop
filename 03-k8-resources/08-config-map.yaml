@@ -9,3 +9,9 @@ data:
   COURSE: "DevOps with AWS"
   DURATION: "120hrs"
   TRAINER: "Charan"
+spec: 
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
