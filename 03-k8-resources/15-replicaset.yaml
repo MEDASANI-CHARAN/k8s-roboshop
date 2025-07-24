@@ -2,18 +2,21 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: nginx
-  # replica set labels
+  # replica set labels, these belong to the ReplicaSet itself, not the Pods.
   labels:
     purpose: replicaset-demo1
     project: roboshop1
     app: nginx1
+    # This helps you quickly filter, search, and group resources.
+    # kubectl get all -l purpose=replicaset-demo1 (or) kubectl get rs -l purpose=replicaset-demo1
 spec:
   replicas: 3
   # These are the labels replicaset use to craete pod replicas, this should match pod labels
+  # In a ReplicaSet, only two things must match, these two must exactly match — otherwise, the ReplicaSet won’t know what Pods to create or manage.
   selector:
     matchLabels:
       purpose: replicaset-demo2
-      project: roboshop2
+      project: roboshop2 
       app: nginx2
   template:
     metadata:
