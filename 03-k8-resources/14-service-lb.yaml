@@ -5,7 +5,7 @@ metadata:
   labels:
     purpose: service-demo2
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector: 
     purpose: service-lb-demo1
     project: roboshop
