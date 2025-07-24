@@ -15,7 +15,7 @@ metadata:
         targetport: 80 # container port
 
 ---
-
+ 
 apiVersion: v1
 kind: Pod 
 metadata:
