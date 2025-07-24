@@ -4,23 +4,23 @@ metadata:
   name: nginx
   # replica set labels
   labels:
-    purpose: replicaset-demo
-    project: roboshop
-    app: nginx
+    purpose: replicaset-demo1
+    project: roboshop1
+    app: nginx1
 spec:
   replicas: 3
   # These are the labels replicaset use to craete pod replicas, this should match pod labels
   selector:
     matchLabels:
-      purpose: replicaset-demo
-      project: roboshop
-      app: nginx
+      purpose: replicaset-demo2
+      project: roboshop2
+      app: nginx2
   template:
     metadata:
       labels: 
-        purpose: replicaset-demo
-        project: roboshop
-        app: nginx
+        purpose: replicaset-demo3
+        project: roboshop3
+        app: nginx3
     spec:
       containers:
       - name: nginx
