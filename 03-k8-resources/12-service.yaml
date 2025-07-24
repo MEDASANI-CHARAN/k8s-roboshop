@@ -4,15 +4,15 @@ metadata:
   name: nginx
   labels:
     purpose: service-demo
-  spec:
-    selector: 
-      purpose: service-demo1
-      project: roboshop
-      environment: dev
-    ports: 
-      - protocol: TCP
-        port: 80 # service port
-        targetport: 80 # container port
+spec:
+  selector: 
+    purpose: service-demo1
+    project: roboshop
+    environment: dev
+  ports: 
+    - protocol: TCP
+      port: 80 # service port
+      targetport: 80 # container port
 
 ---
 
