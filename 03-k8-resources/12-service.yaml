@@ -1,0 +1,32 @@
+apiversion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    purpose: service-demo
+  spec:
+    selector: 
+      purpose: service-demo1
+      project: roboshop
+      environment: dev
+    ports: 
+      - protocol: TCP
+        port: 80 # service port
+        targetport: 80 # container port
+
+---
+
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: nginx
+  labels:
+    purpose: service-demo1
+    project: roboshop
+    environment: dev
+spec: 
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
