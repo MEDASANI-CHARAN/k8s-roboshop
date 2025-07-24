@@ -10,7 +10,7 @@ metadata:
     # This helps you quickly filter, search, and group resources.
     # kubectl get all -l purpose=replicaset-demo1 (or) kubectl get rs -l purpose=replicaset-demo1
 spec:
-  replicas: 10
+  replicas: 2
   # These are the labels replicaset use to craete pod replicas, this should match pod labels
   # In a ReplicaSet, only two things must match, these two must exactly match — otherwise, the ReplicaSet won’t know what Pods to create or manage.
   selector:
