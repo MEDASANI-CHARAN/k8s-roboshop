@@ -5,7 +5,7 @@ metadata:
   labels:
     purpose: service-demo
 spec:
-  selector: 
+  selector:
     purpose: service-demo1
     project: roboshop
     environment: dev
