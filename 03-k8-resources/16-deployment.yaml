@@ -10,7 +10,7 @@ metadata:
     # This helps you quickly filter, search, and group resources.
     # kubectl get all -l purpose=deployment-demo1 (or) kubectl get rs -l purpose=deployment-demo1
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       purpose: deployment-demo2
@@ -25,5 +25,5 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx
+        image: nginx:stable-perl
 
