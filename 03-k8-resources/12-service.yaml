@@ -13,6 +13,7 @@ spec:
     - protocol: TCP
       port: 80 # service port
       targetPort: 80 # container port
+      nodePort:31500 # default range is from (30000-32767)
 
 ---
 
