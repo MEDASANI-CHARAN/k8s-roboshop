@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
+  namespace: roboshop
   # deployment labels, these belong to the deployment itself, not the Pods.
   labels:
     component: mongodb
