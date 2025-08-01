@@ -66,9 +66,9 @@ metadata:
     tier: app-catalogue-svc
 spec:
   selector:
-    component: catalogue-svc
-    project: roboshop-svc
-    tier: app-catalogue-svc
+    component: catalogue
+    project: roboshop
+    tier: app-catalogue
   ports: 
     - protocol: TCP
       port: 8080 # service port
