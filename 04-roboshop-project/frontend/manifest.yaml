@@ -120,7 +120,7 @@ spec:
           configMap:
             name: frontend-configmap
             items:
-              - key: nginx-conf
+              - key: frontend-configmap
                 path: nginx-conf
 
 
