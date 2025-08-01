@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: roboshop
+  # deployment labels, these belong to the deployment itself, not the Pods.
+  labels:
+    component: frontend
+    project: roboshop_top-level
+    tier: web-frontend
+    # These labels identify and organize the ReplicaSet resource itself.
+    # Used by users or tools to filter ReplicaSets, search, and group resources. (e.g., kubectl get all -l project=roboshop_top-level (or) kubectl get rs -l project=roboshop_top-level).
+    # Not used by ReplicaSet controller to create or manage Pods.
+spec:
+  replicas: 1
+  selector:
+    matchLabels: # Tells ReplicaSet which Pods to manage
+      component: frontend
+      project: roboshop
+      tier: web-frontend
+      # These labels define which Pods the ReplicaSet should watch and manage.
+      # If any Pod in the cluster matches these labels, the ReplicaSet counts them toward its replica count.
+      # This selector must exactly match the template labels so the RS can manage the Pods it creates.
+  template:
+    metadata: # Labels for the Pods it creates
+      labels: 
+        component: frontend
+        project: roboshop
+        tier: web-frontend
+        # These labels are web-frontendlied to new Pods created by the ReplicaSet.
+        # They should match the selector labels so the ReplicaSet can identify and manage these Pods.
+        # If they don’t match, the RS will never associate with the Pods it creates, causing errors or orphan Pods.
+    spec:
+      containers:
+      - name: frontend
+        image: charan466/frontend:v1
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: roboshop
+  labels:
+    component: frontend-svc
+    project: roboshop-svc
+    tier: web-frontend-svc
+spec:
+  type: LoadBalancer
+  selector:
+    component: frontend
+    project: roboshop
+    tier: web-frontend
+  ports: 
+    - protocol: TCP
+      port: 80 # service port
+      targetPort: 80 # container port
+
