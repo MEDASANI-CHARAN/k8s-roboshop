@@ -112,21 +112,16 @@ spec:
         image: charan466/frontend:v1
         volumeMounts:
         - name: nginx-conf
-          mountPath: /etc/nginx/nginx-conf
-          subPath: nginx-conf
-          readOnly: true
-      volumeMounts:
-        - name: nginx-conf
           mountPath: /etc/nginx/nginx.conf        # target path inside container
           subPath: nginx.conf                      # key in ConfigMap
           readOnly: true
-      # volumes:
-      #   - name: nginx-conf
-      #     configMap:
-      #       name: nginx-conf
-      #       items:
-      #         - key: nginx-conf
-      #           path: nginx-conf
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf
+            items:
+              - key: nginx-conf
+                path: nginx-conf
 
 
 ---
