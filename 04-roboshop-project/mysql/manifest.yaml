@@ -50,7 +50,7 @@ spec:
         image: charan466/mysql:v1
         envFrom:
         - secretRef:
-          name: mysql-secret
+            name: mysql-secret
 
 ---
 
