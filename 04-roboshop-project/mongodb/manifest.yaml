@@ -48,9 +48,9 @@ metadata:
     tier: database-svc
 spec:
   selector:
-    component: mongodb-svc
-    project: roboshop-svc
-    tier: database-svc
+    component: mongodb
+    project: roboshop
+    tier: database
   ports: 
     - protocol: TCP
       port: 27017 # service port
