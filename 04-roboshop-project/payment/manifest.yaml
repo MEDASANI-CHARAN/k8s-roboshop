@@ -27,7 +27,7 @@ metadata:
     tier: database
 type: Opaque
 data:
-  AMQP_HOST: "cm9ib3Nob3A="
+  AMQP_USER: "cm9ib3Nob3A="
   AMQP_PASS: "cm9ib3Nob3AxMjM="
 
 ---
