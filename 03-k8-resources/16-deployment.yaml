@@ -19,9 +19,9 @@ spec:
   template:
     metadata:
       labels: 
-        purpose: deployment-demo3
-        project: roboshop3
-        app: nginx3
+        purpose: deployment-demo2
+        project: roboshop2
+        app: nginx2
     spec:
       containers:
       - name: nginx
