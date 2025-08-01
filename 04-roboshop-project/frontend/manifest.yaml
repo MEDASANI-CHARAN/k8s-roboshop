@@ -8,7 +8,7 @@ metadata:
     project: roboshop_top-level
     tier: app-frontend
 data:
-  nginx.conf: | 
+  nginx-conf: | 
     user nginx;
     worker_processes auto;
     error_log /var/log/nginx/error.log notice;
@@ -112,8 +112,8 @@ spec:
         image: charan466/frontend:v1
         volumeMounts:
         - name: nginx-conf
-          mountPath: /etc/nginx/nginx.conf        # target path inside container
-          subPath: nginx.conf                      # key in ConfigMap
+          mountPath: /etc/nginx/nginx-conf
+          subPath: nginx-conf
           readOnly: true
       volumes:
         - name: nginx-conf
