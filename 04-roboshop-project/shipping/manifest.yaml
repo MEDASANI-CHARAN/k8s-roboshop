@@ -8,7 +8,7 @@ metadata:
     project: roboshop_top-level
     tier: app-shipping
 data:
-  CART_ENDPOINT: "cart-service:8080"
+  CART_ENDPOINT: "cart:8080"
   DB_HOST: "mysql"
 
 ---
