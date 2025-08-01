@@ -16,7 +16,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: catalogue
+  name: catalogue-1
   namespace: roboshop
   # deployment labels, these belong to the deployment itself, not the Pods.
   labels:
@@ -58,7 +58,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: catalogue
+  name: catalogue-2
   namespace: roboshop
   labels:
     component: catalogue-svc
