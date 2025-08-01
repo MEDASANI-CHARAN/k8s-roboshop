@@ -8,9 +8,9 @@ metadata:
     project: roboshop_top-level
     tier: app-payment
 data:
-  CART_HOST: cart
+  CART_HOST: cart-service
   CART_PORT: "8080"
-  USER_HOST: user
+  USER_HOST: user-service
   USER_PORT: "8080"
   AMQP_HOST: rabbitmq
   AMQP_PORT: "8080"
