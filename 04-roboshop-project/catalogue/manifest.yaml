@@ -51,7 +51,7 @@ spec:
         image: charan466/catalogue:v1
         envFrom:
         - configMapRef:
-            name: catalogue
+            name: catalogue-configmap
 
 ---
 
