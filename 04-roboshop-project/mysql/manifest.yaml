@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+  labels:
+    component: mysql-secret
+    project: roboshop_top-level_secret
+    tier: database
+type: Opaque
+data:
+  MYSQL_ROOT_PASSWORD: "Um9ib1Nob3BAMQ=="
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: roboshop
+  # deployment labels, these belong to the deployment itself, not the Pods.
+  labels:
+    component: mysql
+    project: roboshop_top-level
+    tier: database
+    # These labels identify and organize the ReplicaSet resource itself.
+    # Used by users or tools to filter ReplicaSets, search, and group resources. (e.g., kubectl get all -l project=roboshop_top-level (or) kubectl get rs -l project=roboshop_top-level).
+    # Not used by ReplicaSet controller to create or manage Pods.
+spec:
+  replicas: 1
+  selector:
+    matchLabels: # Tells ReplicaSet which Pods to manage
+      component: mysql
+      project: roboshop
+      tier: database
+      # These labels define which Pods the ReplicaSet should watch and manage.
+      # If any Pod in the cluster matches these labels, the ReplicaSet counts them toward its replica count.
+      # This selector must exactly match the template labels so the RS can manage the Pods it creates.
+  template:
+    metadata: # Labels for the Pods it creates
+      labels: 
+        component: mysql
+        project: roboshop
+        tier: database
+        # These labels are applied to new Pods created by the ReplicaSet.
+        # They should match the selector labels so the ReplicaSet can identify and manage these Pods.
+        # If they don’t match, the RS will never associate with the Pods it creates, causing errors or orphan Pods.
+    spec:
+      containers:
+      - name: mysql
+        image: charan466/mysql:v1
+        envFrom:
+        - secretRef:
+          name: mysql-secret
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: roboshop
+  labels:
+    component: mysql-svc
+    project: roboshop-svc
+    tier: database-svc
+spec:
+  selector:
+    component: mysql
+    project: roboshop
+    tier: database
+  ports: 
+    - protocol: TCP
+      port: 3306 # service port
+      targetPort: 3306 # container port
+
