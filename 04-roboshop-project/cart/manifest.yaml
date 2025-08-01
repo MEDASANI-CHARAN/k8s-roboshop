@@ -9,7 +9,7 @@ metadata:
     tier: app-cart
 data:
   REDIS_HOST: "redis"
-  CATALOGUE_HOST: "catalogue"
+  CATALOGUE_HOST: "catalogue-service"
   CATALOGUE_PORT: "8080"
 
 ---
