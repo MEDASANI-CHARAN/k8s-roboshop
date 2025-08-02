@@ -20,7 +20,7 @@ metadata:
   name: ebs-static-claim
 spec:
   storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
-  volumeName: test-pv # pv metadata name and this name should be same
+  volumeName: ebs-static # pv metadata name and this name should be same
   accessModes:
     - ReadWriteOnce
   resources:
