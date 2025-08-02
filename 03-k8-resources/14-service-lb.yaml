@@ -22,10 +22,10 @@ kind: Pod
 metadata:
   name: nginx-lb1
   labels:
-    purpose: service-lb-demo11
-    project: roboshop1
-    environment: dev1
-spec: 
+    purpose: service-lb-demo1
+    project: roboshop
+    environment: dev
+spec:
   containers:
   - name: nginx
     image: nginx
