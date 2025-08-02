@@ -36,7 +36,7 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: charan466/nginx:v1
+    image: nginx
     volumeMounts: # docker run -v host-path:container-path
     - name: persistent-storage
       mountPath: /usr/sharenginx/html
