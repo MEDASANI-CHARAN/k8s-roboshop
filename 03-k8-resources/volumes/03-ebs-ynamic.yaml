@@ -29,7 +29,7 @@ spec:
   volumes:
   - name: persistent-storage
     persistentVolumeClaim:
-      claimName: ebs-dynamic-claim
+      claimName: ebs-dynamic
   # nodeSelector:
   #     topology.kubernetes.io/zone: us-east-1b
   #   topology.kubernetes.io/zone: us-east-1d
