@@ -29,5 +29,3 @@ spec:
       - name: nginx
         image: nginx
 
-
-# 

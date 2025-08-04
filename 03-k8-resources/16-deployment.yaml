@@ -27,3 +27,19 @@ spec:
       - name: nginx
         image: nginx
 
+---
+
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: nginx-service
+  labels:
+    purpose: deployment-demo2
+    project: roboshop2
+    app: nginx2
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
