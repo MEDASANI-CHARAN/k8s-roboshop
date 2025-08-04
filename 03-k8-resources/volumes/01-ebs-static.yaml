@@ -58,8 +58,8 @@ kind: Service
 metadata:
   name: ebs-static-service
   labels:
-    purpose: ebs-static-demo_top-level
-    project: roboshop_top-level
+    purpose: ebs-static-demo
+    project: roboshop
 spec:
   type: LoadBalancer
   selector:
