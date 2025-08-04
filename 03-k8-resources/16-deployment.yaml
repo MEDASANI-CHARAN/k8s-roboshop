@@ -30,16 +30,17 @@ spec:
 ---
 
 apiVersion: v1
-kind: Pod 
+kind: Service
 metadata:
   name: nginx-service
   labels:
+    purpose: service-deployment
+spec:
+  selector:
     purpose: deployment-demo2
     project: roboshop2
     app: nginx2
-spec:
-  containers:
-  - name: nginx
-    image: nginx
-    ports:
-    - containerPort: 80
+  ports: 
+    - protocol: TCP
+      port: 80 # service port
+      targetPort: 80 # container port
