@@ -42,7 +42,7 @@ spec:
     image: nginx
     volumeMounts: # docker run -v host-path:container-path
     - name: persistent-storage
-      mountPath: /usr/sharenginx/html
+      mountPath: /usr/share/nginx/html
   volumes:
   - name: persistent-storage
     persistentVolumeClaim:
@@ -58,8 +58,8 @@ kind: Service
 metadata:
   name: ebs-static-service
   labels:
-    purpose: ebs-static-demo
-    project: roboshop
+    purpose: ebs-static-demo_top-level
+    project: roboshop_top-level
 spec:
   type: LoadBalancer
   selector:
