@@ -6,7 +6,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: efs-roboshop
-  volumeName: efs-dynamic # pv metadata name and this name should be same
   resources:
     requests:
       storage: 5Gi
