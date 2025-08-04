@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-dynamic-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: efs-roboshop
+  volumeName: efs-dynamic # pv metadata name and this name should be same
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    purpose: efs-dynamic-demo
+    project: roboshop
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts: # docker run -v host-path:container-path
+    - name: persistent-storage
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: persistent-storage
+    persistentVolumeClaim:
+      claimName: efs-dynamic-claim
+  # nodeSelector:
+  #     topology.kubernetes.io/zone: us-east-1b
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: efs-dynamic-service
+  labels:
+    purpose: efs-dynamic-demo_top-level
+    project: roboshop_top-level
+spec:
+  type: LoadBalancer
+  selector:
+    purpose: efs-dynamic-demo
+    project: roboshop
+  ports: 
+    - protocol: TCP
+      port: 80 # service port
+      targetPort: 80 # container port
+      # nodePort:31500 # default range is from (30000-32767)
