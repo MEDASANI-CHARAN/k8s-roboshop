@@ -24,7 +24,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: ""
-  # volumeName: efs-static # pv metadata name and this name should be same
+  volumeName: efs-static # pv metadata name and this name should be same
   resources:
     requests:
       storage: 5Gi
