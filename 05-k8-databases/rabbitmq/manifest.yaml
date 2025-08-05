@@ -74,7 +74,7 @@ spec:
       project: roboshop
       tier: database # has to match .spec.template.metadata.labels
   serviceName: "rabbitmq-headless" # this should be service name
-  replicas: 3 # by default is 1
+  replicas: 2 # by default is 1
   template:
     metadata:
       labels:
