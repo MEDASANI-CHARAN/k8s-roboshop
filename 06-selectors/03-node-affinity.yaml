@@ -16,10 +16,10 @@ spec:
       - weight: 1
         preference:
           matchExpressions:
-          - key: another-node-label-key
+          - key: hardware
             operator: In
             values:
-            - another-node-label-value
+            - gcpuu
   containers:
   - name: with-node-affinity
     image: nginx
