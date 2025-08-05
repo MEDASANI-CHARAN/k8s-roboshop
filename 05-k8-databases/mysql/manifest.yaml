@@ -1,22 +1,22 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis-headless
+  name: mysql-headless
   namespace: roboshop
   labels:
-    component: redis-headless-svc
+    component: mysql-headless-svc
     project: roboshop-headless-svc
     tier: database-headless-svc
 spec:
   clusterIP: None
   selector:
-    component: redis
+    component: mysql
     project: roboshop
     tier: database
   ports: 
     - protocol: TCP
-      port: 6379 # service port
-      targetPort: 6379 # container port
+      port: 3306 # service port
+      targetPort: 3306 # container port
 
 
 ---
@@ -24,21 +24,21 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis
+  name: mysql
   namespace: roboshop
   labels:
-    component: redis-svc
+    component: mysql-svc
     project: roboshop-svc
     tier: database-svc
 spec:
   selector:
-    component: redis
+    component: mysql
     project: roboshop
     tier: database
   ports: 
     - protocol: TCP
-      port: 6379 # service port
-      targetPort: 6379 # container port
+      port: 3306 # service port
+      targetPort: 3306 # container port
 
 
 ---
@@ -46,37 +46,37 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: redis
+  name: mysql
   namespace: roboshop
   labels:
-    component: redis_top-level
+    component: mysql_top-level
     project: roboshop_top-level
     tier: database_top-level
 spec:
   selector:
     matchLabels:
-      component: redis
+      component: mysql
       project: roboshop
       tier: database # has to match .spec.template.metadata.labels
-  serviceName: "redis-headless" # this should be service name
+  serviceName: "mysql-headless" # this should be service name
   replicas: 2 # by default is 1
   template:
     metadata:
       labels:
-        component: redis  # has to match .spec.selector.matchLabels
+        component: mysql  # has to match .spec.selector.matchLabels
         project: roboshop
         tier: database 
     spec:
       containers:
-      - name: redis
-        image: charan466/redis:v1
+      - name: mysql
+        image: charan466/mysql:v1
         volumeMounts:
-        - name:  redis-data
-          mountPath: /data
+        - name:  mysql-data
+          mountPath: /var/lib/mysql
   # This is nothing but PVC, you can directly create here
   volumeClaimTemplates:
   - metadata:
-      name: redis-data
+      name: mysql-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "roboshop-ebs-dynamic"
