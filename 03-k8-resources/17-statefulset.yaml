@@ -54,12 +54,12 @@ spec:
       - name: nginx
         image: nginx
         volumeMounts:
-        - name: www
+        - name: naginx-path
           mountPath: /usr/share/nginx/html
   # This is nothing but PVC, you can directly create here
   volumeClaimTemplates:
   - metadata:
-      name: www
+      name: ebs-dynamic-roboshop
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "roboshop-ebs-dynamic"
