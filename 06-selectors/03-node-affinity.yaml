@@ -11,7 +11,7 @@ spec:
           - key: hardware
             operator: In
             values:
-            - gcpuu
+            - gcpu
       preferredDuringSchedulingIgnoredDuringExecution:
       - weight: 1
         preference:
