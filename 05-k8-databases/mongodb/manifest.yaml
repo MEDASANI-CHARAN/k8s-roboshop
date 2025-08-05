@@ -47,6 +47,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongodb
+  namespace: roboshop
   labels:
     component: mongodb_top-level
     project: roboshop_top-level
