@@ -62,7 +62,7 @@ spec:
       name: ebs-dynamic-roboshop
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "roboshop-ebs-dynamic"
+      storageClassName: "refs-roboshop"
       resources:
         requests:
           storage: 2Gi
