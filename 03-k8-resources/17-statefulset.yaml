@@ -54,7 +54,7 @@ spec:
       - name: nginx
         image: nginx
         volumeMounts:
-        - name: naginx-path
+        - name: efs-dynamic-roboshop
           mountPath: /usr/share/nginx/html
   # This is nothing but PVC, you can directly create here
   volumeClaimTemplates:
