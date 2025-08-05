@@ -54,15 +54,16 @@ spec:
       - name: nginx
         image: nginx
         volumeMounts:
-        - name: efs-dynamic-roboshop
+        - name:  ebs-dynamic-roboshop # efs-dynamic-roboshop
           mountPath: /usr/share/nginx/html
   # This is nothing but PVC, you can directly create here
   volumeClaimTemplates:
   - metadata:
-      name: efs-dynamic-roboshop
+      name: ebs-dynamic-roboshop  # efs-dynamic-roboshop
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "efs-roboshop"
+      # storageClassName: "efs-roboshop"
+      storageClassName: "roboshop-ebs-dynamic"
       resources:
         requests:
-          storage: 2Gi
+          storage: 3Gi
