@@ -1,82 +1,81 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cart-configmap # a lowercase RFC 1123 subdomain must consist of lower case alphanumeric characters, '-' or '.', and must start and end with an alphanumeric character (e.g. 'example.com', regex used for validation is '[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*')
+  name: shipping-configmap # a lowercase RFC 1123 subdomain must consist of lower case alphanumeric characters, '-' or '.', and must start and end with an alphanumeric character (e.g. 'example.com', regex used for validation is '[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*')
   namespace: roboshop
   labels:
-    component: cart
+    component: shipping
     project: roboshop_top-level
-    tier: app-cart
+    tier: app-shipping
 data:
-  REDIS_HOST: "redis"
-  CATALOGUE_HOST: "catalogue-service"
-  CATALOGUE_PORT: "8080"
+  CART_ENDPOINT: "cart-service:8080"
+  DB_HOST: "mysql"
 
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cart-deployment
+  name: shipping-deployment
   namespace: roboshop
   # deployment labels, these belong to the deployment itself, not the Pods.
   labels:
-    component: cart
+    component: shipping
     project: roboshop_top-level
-    tier: app-cart
+    tier: app-shipping
     # These labels identify and organize the ReplicaSet resource itself.
-    # Used by carts or tools to filter ReplicaSets, search, and group resources. (e.g., kubectl get all -l project=roboshop_top-level (or) kubectl get rs -l project=roboshop_top-level).
+    # Used by users or tools to filter ReplicaSets, search, and group resources. (e.g., kubectl get all -l project=roboshop_top-level (or) kubectl get rs -l project=roboshop_top-level).
     # Not used by ReplicaSet controller to create or manage Pods.
 spec:
   replicas: 1
   selector:
     matchLabels: # Tells ReplicaSet which Pods to manage
-      component: cart
+      component: shipping
       project: roboshop
-      tier: app-cart
+      tier: app-shipping
       # These labels define which Pods the ReplicaSet should watch and manage.
       # If any Pod in the cluster matches these labels, the ReplicaSet counts them toward its replica count.
       # This selector must exactly match the template labels so the RS can manage the Pods it creates.
   template:
     metadata: # Labels for the Pods it creates
       labels: 
-        component: cart
+        component: shipping
         project: roboshop
-        tier: app-cart
-        # These labels are app-cartlied to new Pods created by the ReplicaSet.
+        tier: app-shipping
+        # These labels are app-shippinglied to new Pods created by the ReplicaSet.
         # They should match the selector labels so the ReplicaSet can identify and manage these Pods.
         # If they don’t match, the RS will never associate with the Pods it creates, causing errors or orphan Pods.
     spec:
       containers:
-      - name: cart
-        image: charan466/cart:v1
+      - name: shipping
+        image: charan466/shipping:v1
         resources:
           requests:
-            cpu: "50m"
-            memory: "128Mi"
-          limits:
             cpu: "100m"
             memory: "256Mi"
+          limits:
+            cpu: "200m"
+            memory: "512Mi"
         envFrom:
         - configMapRef:
-            name: cart-configmap
+            name: shipping-configmap
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: cart-service
+  name: shipping-service
   namespace: roboshop
   labels:
-    component: cart-svc
+    component: shipping-svc
     project: roboshop-svc
-    tier: app-cart-svc
+    tier: app-shipping-svc
 spec:
   selector:
-    component: cart
+    component: shipping
     project: roboshop
-    tier: app-cart
+    tier: app-shipping
   ports: 
     - protocol: TCP
       port: 8080 # service port
@@ -87,13 +86,13 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: cart-hpa
+  name: shipping-hpa
   namespace: roboshop
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: cart-deployment
+    name: shipping-deployment
   minReplicas: 1
   maxReplicas: 10
   metrics:
