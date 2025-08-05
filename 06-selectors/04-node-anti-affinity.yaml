@@ -11,7 +11,7 @@ spec:
           - key: hardware
             operator: NotIn
             values:
-            - gcpu
+            - gcpuu
   containers:
   - name: with-node-anti-affinity
     image: nginx
