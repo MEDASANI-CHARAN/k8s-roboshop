@@ -61,7 +61,7 @@ spec:
                 values:
                 - web-store
             topologyKey: "kubernetes.io/hostname"
-        podAffinity:
+        podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
