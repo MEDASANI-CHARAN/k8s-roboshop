@@ -25,10 +25,10 @@ spec:
       requiredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
           matchExpressions:
-          - key: security
+          - key: app-name
             operator: In
             values:
-            - S1
+            - pod-1
         topologyKey: topology.kubernetes.io/zone
   containers:
   - name: nginx-2
