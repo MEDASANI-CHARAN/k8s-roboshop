@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1
+  # deployment labels, these belong to the deployment itself, not the Pods.
+  labels:
+    purpose: ingress_top-level
+    project: roboshop1_top-level
+    app: app1_top-level
+    # This helps you quickly filter, search, and group resources.
+    # kubectl get all -l purpose=deployment-demo1 (or) kubectl get rs -l purpose=deployment-demo1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      purpose: ingress
+      project: roboshop1
+      app: app1
+  template:
+    metadata:
+      labels: 
+        purpose: ingress
+        project: roboshop1
+        app: app1
+    spec:
+      containers:
+      - name: app1
+        image: charan466/app1:v1
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-1-svc
+  labels:
+    purpose: service-demo
+spec:
+  selector:
+    purpose: ingress
+    project: roboshop1
+    app: app1
+  ports: 
+    - protocol: TCP
+      port: 80 # service port
+      targetPort: 80 # container port
+      nodePort:31500 # default range is from (30000-32767)
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-wildcard-host
+  annotations:
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:009160060207:certificate/a911c9fd-03ea-4193-bbb8-cec528c2d264
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  rules:
+  - host: "app1.daws2025.online"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: app1
+            port:
+              number: 80 # app1 service port
