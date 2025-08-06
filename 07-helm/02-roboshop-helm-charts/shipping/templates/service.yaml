@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping-service
+  namespace: roboshop
+  labels:
+    component: shipping-svc
+    project: roboshop-svc
+    tier: app-shipping-svc
+spec:
+  selector:
+    component: shipping
+    project: roboshop
+    tier: app-shipping
+  ports: 
+    - protocol: TCP
+      port: 8080 # service port
+      targetPort: 8080 # container port
