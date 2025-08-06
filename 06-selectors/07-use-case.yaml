@@ -13,16 +13,7 @@ spec:
         app: store
     spec:
       affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - store
-            topologyKey: "kubernetes.io/hostname"
-        # podAffinity:
+        # podAntiAffinity:
         #   requiredDuringSchedulingIgnoredDuringExecution:
         #   - labelSelector:
         #       matchExpressions:
@@ -31,6 +22,15 @@ spec:
         #         values:
         #         - store
         #     topologyKey: "kubernetes.io/hostname"
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - store
+            topologyKey: "kubernetes.io/hostname"
       containers:
       - name: server
         image: nginx
@@ -61,15 +61,15 @@ spec:
                 values:
                 - web-store
             topologyKey: "kubernetes.io/hostname"
-        # podAffinity:
-        #   requiredDuringSchedulingIgnoredDuringExecution:
-        #   - labelSelector:
-        #       matchExpressions:
-        #       - key: app
-        #         operator: In
-        #         values:
-        #         - store
-        #     topologyKey: "kubernetes.io/hostname"
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - store
+            topologyKey: "kubernetes.io/hostname"
       containers:
       - name: web-app
         image: nginx
