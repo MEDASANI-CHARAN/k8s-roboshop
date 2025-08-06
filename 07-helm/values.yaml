@@ -1,6 +1,6 @@
 deployment:
   replicas: 2
-  imageVersion: latest
+  imageVersion: stable:perl
 service:
   nodePort: 31565
   targetPort: 80
