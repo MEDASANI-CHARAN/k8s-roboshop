@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  # deployment labels, these belong to the deployment itself, not the Pods.
+  labels:
+    purpose: deployment-demo1
+    project: roboshop1
+    app: nginx1
+    # This helps you quickly filter, search, and group resources.
+    # kubectl get all -l purpose=deployment-demo1 (or) kubectl get rs -l purpose=deployment-demo1
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      purpose: deployment-demo2
+      project: roboshop2 
+      app: nginx2
+  template:
+    metadata:
+      labels: 
+        purpose: deployment-demo2
+        project: roboshop2
+        app: nginx2
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:{{ .Values.deployment.imageVersion }}

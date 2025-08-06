@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    purpose: service-demo
+spec:
+  type: LoadBalancer
+  selector:
+    purpose: deployment-demo2
+    project: roboshop2
+    app: nginx2
+  ports: 
+    - protocol: TCP
+      port: 80 # service port
+      targetPort: {{  .values.service.targetPort }}  # container port
+      nodePort: {{  .values.service.nodePort }} # default range is from (30000-32767)

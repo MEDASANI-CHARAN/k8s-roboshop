@@ -1,0 +1,6 @@
+deployment:
+  replicas: 2
+  imageVersion: latest
+service:
+  nodePort: 8080
+  targetport: 31565
