@@ -4,7 +4,7 @@ metadata:
   name: with-node-anti-affinity
 spec:
   affinity:
-    nodeAntiAffinity:
+    nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
@@ -12,14 +12,6 @@ spec:
             operator: NotIn
             values:
             - gcpu
-      # preferredDuringSchedulingIgnoredDuringExecution:
-      # - weight: 1
-      #   preference:
-      #     matchExpressions:
-      #     - key: hardware1
-      #       operator: In
-      #       values:
-      #       - gcpuu2
   containers:
   - name: with-node-anti-affinity
     image: nginx
