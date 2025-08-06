@@ -1,19 +1,66 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: anti-affinity-use-caes
+# spec:
+#   selector:
+#     matchLabels:
+#       app: store
+#   replicas: 3
+#   template:
+#     metadata:
+#       labels:
+#         app: store
+#     spec:
+#       affinity:
+#         podAntiAffinity:
+#           requiredDuringSchedulingIgnoredDuringExecution:
+#           - labelSelector:
+#               matchExpressions:
+#               - key: app
+#                 operator: In
+#                 values:
+#                 - store
+#             topologyKey: "kubernetes.io/hostname"
+#         podAffinity:
+#           requiredDuringSchedulingIgnoredDuringExecution:
+#           - labelSelector:
+#               matchExpressions:
+#               - key: app
+#                 operator: In
+#                 values:
+#                 - store
+#             topologyKey: "kubernetes.io/hostname"
+#       containers:
+#       - name: server
+#         image: nginx
+
+# ---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: anti-affinity-use-caes
+  name: web-server
 spec:
   selector:
     matchLabels:
-      app: store
+      app: web-store
   replicas: 3
   template:
     metadata:
       labels:
-        app: store
+        app: web-store
     spec:
       affinity:
-        # podAntiAffinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - web-store
+            topologyKey: "kubernetes.io/hostname"
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -24,5 +71,5 @@ spec:
                 - store
             topologyKey: "kubernetes.io/hostname"
       containers:
-      - name: server
+      - name: web-app
         image: nginx
