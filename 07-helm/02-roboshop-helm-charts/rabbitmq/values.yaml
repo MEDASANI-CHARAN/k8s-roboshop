@@ -1,4 +1,4 @@
 statefulset:
-  imageURL: charan466/mysql
+  imageURL: charan466/rabbitmq
   imageVersion: v1
   replicas: 1
