@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1
+  name: app2
   # deployment labels, these belong to the deployment itself, not the Pods.
   labels:
     purpose: ingress_top-level
     project: roboshop1_top-level
-    app: app1_top-level
+    app: app2_top-level
     # This helps you quickly filter, search, and group resources.
     # kubectl get all -l purpose=deployment-demo1 (or) kubectl get rs -l purpose=deployment-demo1
 spec:
@@ -15,17 +15,17 @@ spec:
     matchLabels:
       purpose: ingress
       project: roboshop1
-      app: app1
+      app: app2
   template:
     metadata:
       labels:
         purpose: ingress
         project: roboshop1
-        app: app1
+        app: app2
     spec:
       containers:
-      - name: app1
-        image: charan466/app1:v1
+      - name: app2
+        image: charan466/app2:v1
 
 ---
 
@@ -39,7 +39,7 @@ spec:
   selector:
     purpose: ingress
     project: roboshop1
-    app: app1
+    app: app2
   ports:
     - protocol: TCP
       port: 80 # service port
@@ -50,7 +50,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-app1
+  name: ingress-app2
   annotations:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:009160060207:certificate/a911c9fd-03ea-4193-bbb8-cec528c2d264
@@ -60,7 +60,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: "app1.daws2025.online"
+  - host: "app2.daws2025.online"
     http:
       paths:
       - pathType: Prefix
@@ -69,4 +69,4 @@ spec:
           service:
             name: app-1-svc
             port:
-              number: 80 # app1 service port
+              number: 80 # app2 service port

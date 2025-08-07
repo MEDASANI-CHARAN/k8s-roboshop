@@ -76,7 +76,7 @@ Once completed that add ingress controller to cluster
 	```
 ## 4. Helm install command for clusters with IRSA:
 	```
-	helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=<cluster-name> --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
+	helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=$CLUSTER_NAME --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
 	```
    ### To check whether aws-load-balancer-controller drivers running or not
     ```
