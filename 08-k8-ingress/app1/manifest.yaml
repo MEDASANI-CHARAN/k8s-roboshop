@@ -70,4 +70,3 @@ spec:
             name: app-1-svc
             port:
               number: 80
-
