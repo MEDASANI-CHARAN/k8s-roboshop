@@ -7,8 +7,6 @@ metadata:
     purpose: ingress_top-level
     project: roboshop1_top-level
     app: app1_top-level
-    # This helps you quickly filter, search, and group resources.
-    # kubectl get all -l purpose=deployment-demo1 (or) kubectl get rs -l purpose=deployment-demo1
 spec:
   replicas: 2
   selector:
