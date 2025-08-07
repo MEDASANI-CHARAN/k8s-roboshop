@@ -40,7 +40,7 @@ spec:
     purpose: ingress
     project: roboshop1
     app: app1
-  ports: 
+  ports:
     - protocol: TCP
       port: 80 # service port
       targetPort: 80 # container port
