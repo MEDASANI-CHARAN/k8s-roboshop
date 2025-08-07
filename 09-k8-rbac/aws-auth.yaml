@@ -8,7 +8,7 @@ data:
       username: system:node:{{EC2PrivateDNSName}}
   mapUsers: |
     - groups:
-      - junior1
+      - junior
       userarn: arn:aws:iam::009160060207:user/suresh
       username: suresh
 kind: ConfigMap
