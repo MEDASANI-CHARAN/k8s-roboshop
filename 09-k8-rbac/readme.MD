@@ -29,10 +29,15 @@ CLUSTER_NAME=roboshop
 	--region us-east-1 \
 	--approve
 
-## ✅ 1. Using eksctl get iamserviceaccount
+### ✅ 1. Using eksctl get iamserviceaccount
 
 eksctl get iamserviceaccount --cluster roboshop --region us-east-1
 
-## ✅ 2. Using kubectl to list service accounts
+### ✅ 2. Using kubectl to list service accounts
 
 kubectl get serviceaccounts -n kube-system
+
+### To check whether secret access from CLI
+
+aws secretsmanager get-secret-value \
+    --secret-id roboshop/mysql/password
