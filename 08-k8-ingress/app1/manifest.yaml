@@ -14,8 +14,8 @@ spec:
   selector:
     matchLabels:
       purpose: ingress
-    project: roboshop1
-    app: app1
+      project: roboshop1
+      app: app1
   template:
     metadata:
       labels: 
