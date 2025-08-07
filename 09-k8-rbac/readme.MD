@@ -22,7 +22,7 @@ CLUSTER_NAME=roboshop
 
 	eksctl create iamserviceaccount \
 	--cluster=roboshop \
-	--namespace=kube-system \
+	--namespace=roboshop \
 	--name=roboshop-mysql-secret-reader \
 	--attach-policy-arn=arn:aws:iam::009160060207:policy/RoboShopMYSQLSecretReader \
 	--override-existing-serviceaccounts \

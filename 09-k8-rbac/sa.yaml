@@ -15,7 +15,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 # You need to already have a Role named "pod-reader" in that namespace.
 kind: RoleBinding
 metadata:
-  name: sa-reader
+  name: read-sa
   namespace: roboshop
 subjects:
 # You can specify more than one "subject"
@@ -27,3 +27,18 @@ roleRef:
   kind: Role #this must be Role or ClusterRole
   name: sa-reader # this must match the name of the Role or ClusterRole you wish to bind to
   apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: aws-cli
+  labels:
+    purpose: service-account
+spec: 
+  serviceAccount: roboshop/mysql/password
+  containers:
+  - name: aws-cli
+    image: amazon/aws-cli
+    command: "sleep 100000"
