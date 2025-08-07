@@ -1,3 +1,5 @@
+### USERS ###
+
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -18,15 +20,16 @@ kind: ClusterRoleBinding
 metadata:
   name: access-to-junior
 subjects:
-- kind: Group  # User
-  name: junior # Name is case sensitive
+- kind: User
+  name: suresh # Name is case sensitive  ## ✅ MUST MATCH the 'username' in aws-auth
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
-  name: junior
+  name: junior   ## ✅ must match the ClusterRole name
   apiGroup: rbac.authorization.k8s.io
 
 
+###  GROUPS ###
 
 # apiVersion: rbac.authorization.k8s.io/v1
 # kind: ClusterRole
@@ -48,10 +51,10 @@ roleRef:
 # metadata:
 #   name: access-to-junior
 # subjects:
-# - kind: User
-#   name: suresh # Name is case sensitive
+# - kind: Group  # User  
+#   name: junior # Name is case sensitive  ## ✅ Must match the group name from aws-auth
 #   apiGroup: rbac.authorization.k8s.io
 # roleRef:
 #   kind: ClusterRole
-#   name: junior
+#   name: junior  ## ✅ Must match the ClusterRole name above
 #   apiGroup: rbac.authorization.k8s.io

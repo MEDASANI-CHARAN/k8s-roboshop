@@ -1,3 +1,5 @@
+### USERS ###
+
 apiVersion: v1
 data:
   mapRoles: |
@@ -7,14 +9,10 @@ data:
       - system:nodes
       username: system:node:{{EC2PrivateDNSName}}
   mapUsers: |
-    - userarn: arn:aws:iam::009160060207:user/suresh
-      username: suresh
-      groups:
+    - groups:
       - junior
-    - userarn: arn:aws:iam::009160060207:user/ramesh
-      username: ramesh
-      groups:
-      - junior1
+      userarn: arn:aws:iam::009160060207:user/suresh
+      username: suresh
 kind: ConfigMap
 metadata:
   creationTimestamp: "2025-08-07T02:27:48Z"
@@ -23,6 +21,9 @@ metadata:
   uid: 0041f243-93bd-4ce7-9b44-3c8ee052a4b5
 
 
+
+
+###  GROUPS ###
 
 # apiVersion: v1
 # data:
@@ -33,10 +34,14 @@ metadata:
 #       - system:nodes
 #       username: system:node:{{EC2PrivateDNSName}}
 #   mapUsers: |
-#     - groups:
-#       - junior
-#       userarn: arn:aws:iam::009160060207:user/suresh
+#     - userarn: arn:aws:iam::009160060207:user/suresh
 #       username: suresh
+#       groups:
+#       - junior
+#     - userarn: arn:aws:iam::009160060207:user/ramesh
+#       username: ramesh
+#       groups:
+#       - junior
 # kind: ConfigMap
 # metadata:
 #   creationTimestamp: "2025-08-07T02:27:48Z"
