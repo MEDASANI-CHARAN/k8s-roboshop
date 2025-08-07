@@ -12,9 +12,9 @@ data:
       groups:
       - junior
     - userarn: arn:aws:iam::009160060207:user/ramesh
-      username: ramesh1
+      username: ramesh
       groups:
-      - junior
+      - junior1
 kind: ConfigMap
 metadata:
   creationTimestamp: "2025-08-07T02:27:48Z"
