@@ -38,12 +38,12 @@ CLUSTER_NAME=roboshop
 ## 4. Create an IAM role and Kubernetes ServiceAccount for the LBC. Use the ARN from the previous step.
 
 	eksctl create iamserviceaccount \
-	--cluster=<cluster-name> \
+	--cluster=$CLUSTER_NAME \
 	--namespace=kube-system \
 	--name=aws-load-balancer-controller \
-	--attach-policy-arn=arn:aws:iam::<AWS_ACCOUNT_ID>:policy/AWSLoadBalancerControllerIAMPolicy \
+	--attach-policy-arn=arn:aws:iam::009160060207:policy/AWSLoadBalancerControllerIAMPolicy \
 	--override-existing-serviceaccounts \
-	--region <region-code> \
+	--region $REGION_CODE \
 	--approve
 
 
