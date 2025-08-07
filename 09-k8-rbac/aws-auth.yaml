@@ -11,7 +11,7 @@ data:
       username: suresh
       groups:
       - junior
-    - userarn: arn:aws:iam::009160060207:user/ramesh1
+    - userarn: arn:aws:iam::009160060207:user/ramesh
       username: ramesh1
       groups:
       - junior
