@@ -43,7 +43,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 # You need to already have a Role named "pod-reader" in that namespace.
 kind: RoleBinding
 metadata:
-  name: all-access-to-junior
+  name: all-access-to-lead
   namespace: roboshop
 subjects:
 # You can specify more than one "subject"
