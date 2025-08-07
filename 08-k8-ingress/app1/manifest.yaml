@@ -13,7 +13,7 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      purpose: ingress
+      purpose: ingress-app1
       project: roboshop1
       app: app1
   template:
@@ -51,13 +51,14 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-wildcard-host
+  name: ingress
   annotations:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:009160060207:certificate/a911c9fd-03ea-4193-bbb8-cec528c2d264
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
 spec:
+  ingressClassName: alb
   rules:
   - host: "app1.daws2025.online"
     http:
