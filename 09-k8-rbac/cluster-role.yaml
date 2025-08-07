@@ -19,7 +19,7 @@ metadata:
   name: access-to-junior
 subjects:
 - kind: User
-  name: suresh1 # Name is case sensitive
+  name: suresh12 # Name is case sensitive
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
