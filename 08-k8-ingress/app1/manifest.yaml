@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app1
-  # deployment labels, these belong to the deployment itself, not the Pods.
   labels:
     purpose: ingress_top-level
     project: roboshop1_top-level
