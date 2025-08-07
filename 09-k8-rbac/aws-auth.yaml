@@ -12,7 +12,7 @@ data:
       groups:
       - junior
     - userarn: arn:aws:iam::009160060207:user/Ramesh
-      username: ramesh
+      username: Ramesh
       groups:
       - junior
 kind: ConfigMap
