@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   # "namespace" omitted since ClusterRoles are not namespaced
-  name: junior1
+  name: junior
 rules:
 - apiGroups: [""]
   # at the HTTP level, the name of the resource for accessing Secret
@@ -18,10 +18,39 @@ kind: ClusterRoleBinding
 metadata:
   name: access-to-junior
 subjects:
-- kind: User
-  name: suresh # Name is case sensitive
+- kind: Group  # User
+  name: junior # Name is case sensitive
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
-  name: junior1
+  name: junior
   apiGroup: rbac.authorization.k8s.io
+
+
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: ClusterRole
+# metadata:
+#   # "namespace" omitted since ClusterRoles are not namespaced
+#   name: junior
+# rules:
+# - apiGroups: [""]
+#   # at the HTTP level, the name of the resource for accessing Secret
+#   # objects is "secrets"
+#   resources: ["persistentvolumes"]
+#   verbs: ["get", "watch", "list"]
+
+# ---
+
+# apiVersion: rbac.authorization.k8s.io/v1
+# # This cluster role binding allows anyone in the "manager" group to read secrets in any namespace.
+# kind: ClusterRoleBinding
+# metadata:
+#   name: access-to-junior
+# subjects:
+# - kind: User
+#   name: suresh # Name is case sensitive
+#   apiGroup: rbac.authorization.k8s.io
+# roleRef:
+#   kind: ClusterRole
+#   name: junior
+#   apiGroup: rbac.authorization.k8s.io
