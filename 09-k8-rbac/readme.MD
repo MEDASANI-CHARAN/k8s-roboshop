@@ -30,7 +30,6 @@ CLUSTER_NAME=roboshop
 	--approve
 
 # Additional command:
-# ==================
 ### ✅ 1. Using eksctl get iamserviceaccount
 
 eksctl get iamserviceaccount --cluster roboshop --region us-east-1
