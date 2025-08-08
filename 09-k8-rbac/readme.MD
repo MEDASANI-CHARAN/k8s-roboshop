@@ -37,12 +37,12 @@ eksctl get iamserviceaccount --cluster roboshop --region us-east-1
 
 kubectl get serviceaccounts -n kube-system
 
-### To check whether secret access from CLI
+### 3. To check whether secret access from CLI
 
 aws secretsmanager get-secret-value \
     --secret-id <roboshop/mysql/password>
 
-### If you want to fetch a secret value from AWS Secrets Manager in JSON format, you can use the AWS CLI like this:
+### 4. If you want to fetch a secret value from AWS Secrets Manager in JSON format, you can use the AWS CLI like this:
 
 aws secretsmanager get-secret-value \
     --secret-id <roboshop/mysql/pass> \
