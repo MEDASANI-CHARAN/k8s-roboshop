@@ -40,4 +40,11 @@ kubectl get serviceaccounts -n kube-system
 ### To check whether secret access from CLI
 
 aws secretsmanager get-secret-value \
-    --secret-id roboshop/mysql/password
+    --secret-id <roboshop/mysql/password>
+
+### If you want to fetch a secret value from AWS Secrets Manager in JSON format, you can use the AWS CLI like this:
+
+aws secretsmanager get-secret-value \
+    --secret-id <roboshop/mysql/pass> \
+    --query SecretString \
+    --output json
