@@ -49,28 +49,28 @@ module "eks" {
       AmazonEKSLoadBalancingPolicy = "arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy"
     }
     }
-    green = {
-        # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
-        ami_type       = "AL2023_x86_64_STANDARD"
-        instance_types = ["m5.xlarge"]
+    # green = {
+    #     # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
+    #     ami_type       = "AL2023_x86_64_STANDARD"
+    #     instance_types = ["m5.xlarge"]
 
-        min_size     = 2
-        max_size     = 10
-        desired_size = 2
+    #     min_size     = 2
+    #     max_size     = 10
+    #     desired_size = 2
         
-        iam_role_addtional_policies = {
-        AmazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-        AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
-        AmazonEKSLoadBalancingPolicy = "arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy"
-      }
-      taints = {
-        upgrade = {
-          key = "upgrade"
-          value = "true"
-          effect = "NO_SCHEDULE"
-        }
-      }
-    }
+    #     iam_role_addtional_policies = {
+    #     AmazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+    #     AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
+    #     AmazonEKSLoadBalancingPolicy = "arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy"
+    #   }
+    #   taints = {
+    #     upgrade = {
+    #       key = "upgrade"
+    #       value = "true"
+    #       effect = "NO_SCHEDULE"
+    #     }
+    #   }
+    # }
   }
 
   tags = merge(
