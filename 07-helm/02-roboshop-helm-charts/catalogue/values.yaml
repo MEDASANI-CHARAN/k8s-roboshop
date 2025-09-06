@@ -1,6 +1,6 @@
 deployment:
   imageURL: charan466/catalogue
-  imageVersion: v1
+  imageVersion: IMAGE_VERSION
   replicas: 1
 hpa:
   max_replicas: 10
